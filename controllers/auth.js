@@ -22,7 +22,7 @@ const login = async (req, res) => {
   if (!email || !password) {
     throw new BadRequestError("please provide email or password");
   }
-  const user = await UserModel.findOne({ email, isDeleted: false });
+  const user = await UserModel.findOne({ email, isDeleted: false }).select("-isDeleted");
   if (user) {
     const compare = await user.comparePassword(password);
     if (compare) {
@@ -36,15 +36,6 @@ const login = async (req, res) => {
   }
 };
 
-//all Users
-const allUsers = async (req, res) => {
-  const allUsers = await UserModel.find({ isDeleted: false });
-  res.send({ nbHits: allUsers.length, allUsers });
-};
-
-//dashboard
-
-
 
 // export
-module.exports = { allUsers, login, register};
+module.exports = { login, register};
