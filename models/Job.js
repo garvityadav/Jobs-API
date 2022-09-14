@@ -5,12 +5,12 @@ const JobSchema = new mongoose.Schema(
     company: {
       type: String,
       trim: true,
-      maxLength: [20, "Name can't be more than 20 characters"],
+      maxLength: [120, "Name can't be more than 20 characters"],
     },
     position: {
       type: String,
       trim: true,
-      maxLength: [20, "can't exceed more than 20 characters"],
+      maxLength: [100, "can't exceed more than 20 characters"],
     },
     status: {
       type: String,
